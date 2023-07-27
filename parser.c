@@ -5,7 +5,7 @@
  * @info: Pointer to the info struct.
  * @path: Path to the file.
  *
- * This function determines whether the given file at 
+ * This function determines whether the given file at
  * the specified path is an
  * executable command.
  *
@@ -13,27 +13,26 @@
  */
 int is_cmd(info_t *info, char *path)
 {
-    struct stat st;
-    (void)info;
-    if (!path || stat(path, &st))
-        return 0;
-
-    if (st.st_mode & S_IFREG)
-    {
-        return 1;
-    }
-    return 0;
+	struct stat st;
+	(void)info;
+	if (!path || stat(path, &st))
+		return (0);
+	if (st.st_mode & S_IFREG)
+	{
+		return (1);
+	}
+	return (0);
 }
 
 /**
- * dup_chars - Create a duplicate of characters from 
+ * dup_chars - Create a duplicate of characters from
  * @pathstr starting at @start
  * and ending at @stop (exclusive).
  * @pathstr: The PATH string.
  * @start: Starting index.
  * @stop: Stopping index (exclusive).
  *
- * This function creates a new buffer containing 
+ * This function creates a new buffer containing
  * the characters from @pathstr
  * starting at index @start and ending at index @stop (exclusive).
  *
@@ -57,8 +56,8 @@ char *dup_chars(char *pathstr, int start, int stop)
  * @pathstr: The PATH string.
  * @cmd: The command to find.
  *
- * This function searches for the full path of the command 
- * @cmd in the @pathstr.
+ * This function searches for the full path of the command
+ * @cmd in the @pathstr
  *
  * Return: Pointer to the full path of the command if found,
  * or NULL otherwise.
