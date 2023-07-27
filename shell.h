@@ -142,7 +142,7 @@ char **strtow2(char *, char);
 
 char *_memset(char *, char, unsigned int);
 void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+void *my_realloc(void *, unsigned int, unsigned int);
 
 int bfree(void **);
 
