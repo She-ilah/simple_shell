@@ -3,21 +3,21 @@
 /**
  * **strtow - Function tokenizes a string.
  * @str: The string to be tokenized.
- * @delim: Delimter string.
+ * @d: Delimter string.
  * Return: Pointer to an array of strings or NULL upon failure.
  */
 
-char **strtow(char *str, char *delim)
+char **strtow(char *str, char *d)
 {
 	int n, a, b, c, total = 0;
 	char **string;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
-	if (!delim)
-		delim = " ";
+	if (!d)
+		d = " ";
 	for (n = 0; str[n] != '\0'; n++)
-		if (!char_split(str[n], delim) && (char_split(str[n + 1], delim) || !str[n + 1]))
+		if (!char_split(str[n], d) && (char_split(str[n + 1], d) || !str[n + 1]))
 			total++;
 
 	if (total == 0)
@@ -27,10 +27,10 @@ char **strtow(char *str, char *delim)
 		return (NULL);
 	for (n = 0, a = 0; a < total; a++)
 	{
-		while (char_split(str[n], delim))
+		while (char_split(str[n], d))
 			n++;
 		b = 0;
-		while (!char_split(str[n + b], delim) && str[n + b])
+		while (!char_split(str[n + b], d) && str[n + b])
 			b++;
 		string[a] = malloc((b + 1) * sizeof(char));
 		if (!string[a])

@@ -35,7 +35,9 @@ int is_letter(int check)
 {
 	/*If char is a letter function returns 1*/
 	if ((check >= 'a' && check <= 'z') || (check >= 'A' && check <= 'Z'))
+	{
 		return (1);
+	}
 	else
 		/*Returns 0 if it goes wrong*/
 		return (0);

@@ -124,7 +124,7 @@ void find_cmd(info_t *check)
 void fork_cmd(info_t *check)
 {
 	pid_t child_pid;
-	
+
 	/*Functions to run the cmd*/
 	child_pid = fork();
 	if (child_pid == -1)

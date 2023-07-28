@@ -36,34 +36,34 @@ int is_chain(info_t *check, char *buffer, size_t *place)
 
 /**
  * halt_chain - Function determines whether to continue chaining.
- * @check: parameter one.
+ * @chec: parameter one.
  * @buffer: buffer(main display).
- * @place: Current position.
- * index: index
+ * @pl: Current position.
+ * ind: index
  * @len: The length of the buffer.
  * Return: Void
  */
-void halt_chain(info_t *check, char *buffer, size_t *place, size_t index, size_t len)
+void halt_chain(info_t *chec, char *buffer, size_t *pl, size_t ind, size_t len)
 {
-	size_t n = *place;
+	size_t n = *pl;
 
-	if (check->cmd_buf_type == CMD_AND)
+	if (chec->cmd_buf_type == CMD_AND)
 	{
-		if (check->status)
+		if (chec->status)
 		{
-			buffer[index] = 0;
+			buffer[ind] = 0;
 			n = len;
 		}
 	}
-	if (check->cmd_buf_type == CMD_OR)
+	if (chec->cmd_buf_type == CMD_OR)
 	{
-		if (!check->status)
+		if (!chec->status)
 		{
-			buffer[index] = 0;
+			buffer[ind] = 0;
 			n = len;
 		}
 	}
-	*place = n;
+	*pl = n;
 }
 
 /**
