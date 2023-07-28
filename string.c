@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * get_str_len - Returns the length of a string.
+ * _strlen - Returns the length of a string.
  * @str: The string whose length is to be determined.
  *
  * Return: The length of the string.
  */
-int get_str_len(char *str)
+int _strlen(char *str)
 {
 	int length = 0;
 
@@ -17,13 +17,13 @@ int get_str_len(char *str)
 	return (length);
 }
 /**
- * my_strcmp - Performs alphabetical comparison of two strings.
+ * _strcmp - Performs alphabetical comparison of two strings.
  * @str1: The first string to compare.
  * @str2: The second string to compare.
  *
  * Return: An integer representing the comparison result(-, + or 0)
  */
-int my_strcmp(char *str1, char *str2)
+int _strcmp(char *str1, char *str2)
 {
 	while (*str1 && *str2)
 	{
@@ -38,13 +38,13 @@ int my_strcmp(char *str1, char *str2)
 		return (*str1 < *str2 ? -1 : 1);
 }
 /**
- * my_strcat - Concatenates two strings.
+ * _strcat - Concatenates two strings.
  * @destinat: The destination buffer to store the concatenated string.
  * @source: The source buffer, whose content will be appended.
  *
  * Return: Pointer to the destination buffer.
  */
-char *my_strcat(char *destinat, char *source)
+char *_strcat(char *destinat, char *source)
 {
 	char *result = destinat;
 
