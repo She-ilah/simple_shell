@@ -64,6 +64,7 @@ void _puts(char *str)
 		_putchar(str[n]);
 		n++;
 	}
+	/* Functions to write on to buffer main display*/
 }
 
 /**
@@ -76,6 +77,7 @@ int _putchar(char c)
 	static int n;
 	static char buffer[WRITE_BUF_SIZE];
 
+	/*Functions to write on to buffer main display*/
 	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
 		write(1, buffer, n);

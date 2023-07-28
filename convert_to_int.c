@@ -7,6 +7,7 @@
  */
 int shell_on(info_t *str_addr)
 {
+	/*Provision to determine whether shell is interactive*/
 	return (isatty(STDIN_FILENO) && str_addr->readfd <= 2);
 }
 
@@ -18,6 +19,7 @@ int shell_on(info_t *str_addr)
  */
 int char_split(char check, char *str)
 {
+	/*Goes through the string.*/
 	while (*str)
 		if (*str++ == check)
 			return (1);
@@ -31,9 +33,11 @@ int char_split(char check, char *str)
  */
 int is_letter(int check)
 {
+	/*If char is a letter function returns 1*/
 	if ((check >= 'a' && check <= 'z') || (check >= 'A' && check <= 'Z'))
 		return (1);
 	else
+		/*Returns 0 if it goes wrong*/
 		return (0);
 }
 
@@ -47,6 +51,7 @@ int convert_to_int(char *str)
 	int n, sign = 1, fl = 0, integer;
 	unsigned int res = 0;
 
+	/*Goes through the string*/
 	for (n = 0; str[n] != '\0' && fl != 2; n++)
 	{
 		if (str[n] == '-')

@@ -9,7 +9,7 @@ char **shell_ret_env(info_t *check)
 {
 	if (!check->environ || check->env_changed)
 	{
-		check->environ = list_to_strings(check->env);
+		check->environ = string_list(check->env);
 		check->env_changed = 0;
 	}
 	return (check->environ);
@@ -35,7 +35,7 @@ int shell_rev_env(info_t *check, char *main_str)
 		place = starts_with(list->str, main_str);
 		if (place && *place == '=')
 		{
-			check->env_changed = delete_node_at_index(&(check->env), n);
+			check->env_changed = rm_node(&(check->env), n);
 			n = 0;
 			list = check->env;
 			continue;
@@ -81,7 +81,7 @@ int shell_init_env(info_t *check, char *main_str, char *value)
 		}
 		list = list->next;
 	}
-	add_node_end(&(check->env), buffer, 0);
+	append_list(&(check->env), buffer, 0);
 	free(buffer);
 	check->env_changed = 1;
 	return (0);

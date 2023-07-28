@@ -17,7 +17,7 @@ int main_shell(info_t *check, char **shargv)
 		if (shell_on(check))
 			_puts("$ ");
 		shell_putchar(BUF_FLUSH);
-		n = get_input(check);
+		n = shell_input(check);
 		if (n != -1)
 		{
 			shell_info(check, shargv);
@@ -83,6 +83,7 @@ void find_cmd(info_t *check)
 	char *path = NULL;
 	int i, k;
 
+	/* Searchs the path for a specified command*/
 	check->path = check->argv[0];
 	if (check->linecount_flag == 1)
 	{
@@ -110,6 +111,7 @@ void find_cmd(info_t *check)
 		{
 			check->status = 127;
 			shell_printf_err(check, "not found\n");
+			/*Error to print upon failure*/
 		}
 	}
 }
@@ -122,12 +124,14 @@ void find_cmd(info_t *check)
 void fork_cmd(info_t *check)
 {
 	pid_t child_pid;
-
+	
+	/*Functions to run the cmd*/
 	child_pid = fork();
 	if (child_pid == -1)
 	{
 		perror("Error:");
 		return;
+		/*Prints error upon failure*/
 	}
 	if (child_pid == 0)
 	{
@@ -137,6 +141,7 @@ void fork_cmd(info_t *check)
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
+			/*Exits upon failure*/
 		}
 	}
 	else

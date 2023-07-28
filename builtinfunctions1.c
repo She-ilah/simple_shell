@@ -7,7 +7,7 @@
  */
 int shell_history(info_t *check)
 {
-	print_list(check->history);
+	shell_printf_list(check->history);
 	return (0);
 }
 
@@ -27,8 +27,8 @@ int rev_init_alias(info_t *check, char *str)
 		return (1);
 	count = *place;
 	*place = 0;
-	rev = delete_node_at_index(&(check->alias),
-		get_node_index(check->alias, node_starts_with(check->alias, str, -1)));
+	rev = rm_node(&(check->alias),
+		index_node(check->alias, pre_node(check->alias, str, -1)));
 	*place = count;
 	return (rev);
 }
@@ -47,10 +47,10 @@ int init_alias(info_t *check, char *str)
 	if (!place)
 		return (1);
 	if (!*++place)
-		return (unset_alias(check, str));
+		return (rev_init_alias(check, str));
 
-	unset_alias(check, str);
-	return (add_node_end(&(check->alias), str, 0) == NULL);
+	rev_init_alias(check, str);
+	return (append_list(&(check->alias), str, 0) == NULL);
 }
 
 /**
@@ -102,7 +102,7 @@ int shell_alias(info_t *check)
 		if (c)
 			init_alias(check, check->argv[n]);
 		else
-			printf_shell_alias(node_starts_with(check->alias, check->argv[n], '='));
+			printf_shell_alias(pre_node(check->alias, check->argv[n], '='));
 	}
 	return (0);
 }

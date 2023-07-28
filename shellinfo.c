@@ -5,7 +5,7 @@
  * @info: The address of struct.
  * Return: void.
  */
-void clear_info(info_t *info)
+void init_info(info_t *info)
 {
 	info->arg = NULL;
 	info->argv = NULL;
@@ -40,8 +40,8 @@ void shell_info(info_t *info, char **curr_argv)
 			;
 		info->argc = n;
 
-		replace_alias(info);
-		replace_vars(info);
+		new_alias(info);
+		new_vars(info);
 	}
 }
 

@@ -124,9 +124,9 @@ int shell_putstwo(char c, int fd);
 int shell_putstwo2(char *str, int fd);
 
 char *starts_with(const char *, const char *);
-int _strcmp(char *, char *)
-char *_strcat(char *, char *)
-int _strlen(char *)
+int _strcmp(char *str_one, char *str_two);
+char *_strcat(char *destinat, char *source);
+int _strlen(char *str);
 
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
@@ -144,7 +144,7 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *my_realloc(void *, unsigned int, unsigned int);
 
-int bfree(void **);
+int free_ptr(void **);
 
 int shell_on(info_t *);
 int char_split(char, char *);
@@ -164,9 +164,9 @@ int shell_help(info_t *);
 int shell_history(info_t *);
 int shell_alias(info_t *);
 
-ssize_t get_input(info_t *);
+ssize_t shell_input(info_t *);
 int _getline(info_t *, char **, size_t *);
-void sigintHandler(int);
+void _block(int);
 
 void init_info(info_t *);
 void shell_info(info_t *, char **);
@@ -182,11 +182,11 @@ char **shell_ret_env(info_t *);
 int shell_rev_env(info_t *, char *);
 int shell_init_env(info_t *, char *, char *);
 
-char *get_history(info_t *info);
-int shell_write_hist(info_t *info);
-int shell_rhist(info_t *info);
-int append_history(info_t *info, char *buf, int linecount);
-int sort_history(info_t *info);
+char *get_history(info_t *check);
+int shell_write_hist(info_t *check);
+int shell_rhist(info_t *check);
+int append_history(info_t *check, char *buffer, int count);
+int sort_history(info_t *check);
 
 list_t *add_node(list_t **, const char *, int);
 list_t *append_list(list_t **, const char *, int);
@@ -201,10 +201,10 @@ list_t *pre_node(list_t *, char *, char);
 ssize_t index_node(list_t *, list_t *);
 
 int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+void halt_chain(info_t *, char *, size_t *, size_t, size_t);
+int new_alias(info_t *);
+int new_vars(info_t *);
+int new_string(char **, char *);
 
 #endif
 

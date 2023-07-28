@@ -11,7 +11,7 @@ char *get_history(info_t *check)
 	char *buffer;
 	char *dir;
 
-	dir = _getenv(check, "HOME=");
+	dir = shell_env_val(check, "HOME=");
 	if (!dir)
 		return (NULL);
 	buffer = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
@@ -44,10 +44,10 @@ int shell_write_hist(info_t *check)
 		return (-1);
 	for (list = check->history; list; list = list->next)
 	{
-		_putsfd(list->str, input);
-		_putfd('\n', input);
+		shell_putstwo2(list->str, input);
+		shell_putstwo('\n', input);
 	}
-	_putfd(BUF_FLUSH, input);
+	shell_putstwo(BUF_FLUSH, input);
 	close(input);
 	return (1);
 }
@@ -87,16 +87,16 @@ int shell_rhist(info_t *check)
 		if (buffer[n] == '\n')
 		{
 			buffer[n] = 0;
-			build_history_list(check, buffer + last, linecount++);
+			append_history(check, buffer + last, linecount++);
 			last = n + 1;
 		}
 	if (last != n)
-		build_history_list(check, buffer + last, linecount++);
+		append_history(check, buffer + last, linecount++);
 	free(buffer);
 	check->histcount = linecount;
 	while (check->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(check->history), 0);
-	renumber_history(check);
+		rm_node(&(check->history), 0);
+	sort_history(check);
 	return (check->histcount);
 }
 
@@ -113,7 +113,7 @@ int append_history(info_t *check, char *buffer, int count)
 
 	if (check->history)
 		list = check->history;
-	add_node_end(&list, buffer, count);
+	append_list(&list, buffer, count);
 
 	if (!check->history)
 		check->history = list;

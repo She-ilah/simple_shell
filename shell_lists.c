@@ -4,10 +4,10 @@
  * add_node - Function appends linked list from the beginning.
  * @ptr: Pointer to the node.
  * @str: str field of node
- * @index: index
+ * @num: index
  * Return: Function returns the size of list.
  */
-list_t *add_node(list_t **ptr, const char *str, int index)
+list_t *add_node(list_t **ptr, const char *str, int num)
 {
 	list_t *new_ptr;
 
@@ -17,7 +17,7 @@ list_t *add_node(list_t **ptr, const char *str, int index)
 	if (!new_ptr)
 		return (NULL);
 	_memset((void *)new_ptr, 0, sizeof(list_t));
-	new_ptr->index = index;
+	new_ptr->num = num;
 	if (str)
 	{
 		new_ptr->str = _strdup(str);
@@ -36,10 +36,10 @@ list_t *add_node(list_t **ptr, const char *str, int index)
  * append_list - Function adds a node to end of the linked-list.
  * @ptr: Pointer to the head node.
  * @str: String of the node.
- * @index: index
+ * @num: index
  * Return: Returns the size of the linked list.
  */
-list_t *append_list(list_t **ptr, const char *str, int index)
+list_t *append_list(list_t **ptr, const char *str, int num)
 {
 	list_t *new_list, *list;
 
@@ -51,7 +51,7 @@ list_t *append_list(list_t **ptr, const char *str, int index)
 	if (!new_list)
 		return (NULL);
 	_memset((void *)new_list, 0, sizeof(list_t));
-	new_list->index = index;
+	new_list->num = num;
 	if (str)
 	{
 		new_list->str = _strdup(str);

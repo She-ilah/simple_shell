@@ -64,7 +64,7 @@ size_t shell_printf_list(const list_t *ptr)
 
 	while (ptr)
 	{
-		_puts(convert_number(ptr->num, 10, 0));
+		_puts(shell_con(ptr->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(ptr->str ? ptr->str : "(nil)");

@@ -37,7 +37,7 @@ void shell_printf_err(info_t *check, char *errstr)
 {
 	shell_puts(check->fname);
 	shell_puts(": ");
-	print_d(check->line_count, STDERR_FILENO);
+	shell_printf_dec(check->line_count, STDERR_FILENO);
 	shell_puts(": ");
 	shell_puts(check->argv[0]);
 	shell_puts(": ");
@@ -57,7 +57,7 @@ int shell_printf_dec(int input, int place)
 	unsigned int val, start;
 
 	if (place == STDERR_FILENO)
-		__putchar = _eputchar;
+		__putchar = shell_putchar;
 	if (input < 0)
 	{
 		val = -input;

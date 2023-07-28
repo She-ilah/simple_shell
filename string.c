@@ -3,7 +3,6 @@
 /**
  * _strlen - Returns the length of a string.
  * @str: The string whose length is to be determined.
- *
  * Return: The length of the string.
  */
 int _strlen(char *str)
@@ -18,24 +17,23 @@ int _strlen(char *str)
 }
 /**
  * _strcmp - Performs alphabetical comparison of two strings.
- * @str1: The first string to compare.
- * @str2: The second string to compare.
- *
+ * @str_one: The first string to compare.
+ * @str_two: The second string to compare.
  * Return: An integer representing the comparison result(-, + or 0)
  */
-int _strcmp(char *str1, char *str2)
+int _strcmp(char *str_one, char *str_two)
 {
-	while (*str1 && *str2)
+	while (*str_one && *str_two)
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
+		if (*str_one != *str_two)
+			return (*str_one - *str_two);
+		str_one++;
+		str_two++;
 	}
-	if (*str1 == *str2)
+	if (*str_one == *str_two)
 		return (0);
 	else
-		return (*str1 < *str2 ? -1 : 1);
+		return (*str_one < *str_two ? -1 : 1);
 }
 /**
  * _strcat - Concatenates two strings.
@@ -52,6 +50,21 @@ char *_strcat(char *destinat, char *source)
 		destinat++;
 	while (*source)
 		*destinat++ = *source++;
-	*destinat = '\0'
+	*destinat = '\0';
 		return (result);
 }
+
+/**
+ * starts_with - function checks index of string.
+ * @haystack: string to search for needle.
+ * @needle: string to be found.
+ * Return: Returns next haystack or NULL upon failure.
+ */
+char *starts_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
+}
+

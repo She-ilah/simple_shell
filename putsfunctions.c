@@ -9,6 +9,7 @@ void shell_puts(char *str)
 {
 	int n = 0;
 
+	/* Provision for the string(not)*/
 	if (!str)
 		return;
 	while (str[n] != '\0')

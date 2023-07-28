@@ -11,16 +11,16 @@ int shell_exit(info_t *check)
 
 	if (check->argv[1])
 	{
-		exitcheck = _erratoi(check->argv[1]);
+		exitcheck = str_to_int(check->argv[1]);
 		if (exitcheck == -1)
 		{
 			check->status = 2;
-			print_error(check, "Unidentified Number: ");
-			_eputs(check->argv[1]);
-			_eputchar('\n');
+			shell_printf_err(check, "Unidentified Number: ");
+			shell_puts(check->argv[1]);
+			shell_putchar('\n');
 			return (1);
 		}
-		check->err_num = _erratoi(check->argv[1]);
+		check->err_num = str_to_int(check->argv[1]);
 		return (-2);
 	}
 	check->err_num = -1;
@@ -39,39 +39,39 @@ int shell_cd(info_t *check)
 
 	str = getcwd(buffer, 1024);
 	if (!str)
-		_puts("TODO: >>getcwd failure emsg here<<\n");
+		_puts("Failed to get the cwd \n");
 	if (!check->argv[1])
 	{
-		curr_dir = _getenv(check, "HOME=");
+		curr_dir = shell_env_val(check, "HOME=");
 		if (!curr_dir)
 			chdir_ret =
-				chdir((curr_dir = _getenv(check, "PWD=")) ? curr_dir : "/");
+				chdir((curr_dir = shell_env_val(check, "PWD=")) ? curr_dir : "/");
 		else
 			chdir_ret = chdir(curr_dir);
 	}
 	else if (_strcmp(check->argv[1], "-") == 0)
 	{
-		if (!_getenv(check, "OLDPWD="))
+		if (!shell_env_val(check, "OLDPWD="))
 		{
 			_puts(str);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(_getenv(check, "OLDPWD=")), _putchar('\n');
+		_puts(shell_env_val(check, "OLDPWD=")), _putchar('\n');
 		chdir_ret =
-			chdir((curr_dir = _getenv(check, "OLDPWD=")) ? curr_dir : "/");
+			chdir((curr_dir = shell_env_val(check, "OLDPWD=")) ? curr_dir : "/");
 	}
 	else
 		chdir_ret = chdir(check->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error(check, "can't cd to ");
-		_eputs(check->argv[1]), _eputchar('\n');
+		shell_printf_err(check, "unable to cd to ");
+		shell_puts(check->argv[1]), shell_putchar('\n');
 	}
 	else
 	{
-		_setenv(check, "OLDPWD", _getenv(check, "PWD="));
-		_setenv(check, "PWD", getcwd(buffer, 1024));
+		shell_init_env(check, "OLDPWD", shell_env_val(check, "PWD="));
+		shell_init_env(check, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
@@ -86,7 +86,7 @@ int shell_help(info_t *check)
 	char **arr;
 
 	arr = check->argv;
-	_puts("The help call works \n");
+	_puts("Help call has been successful \n");
 	if (0)
 		_puts(*arr);
 	return (0);

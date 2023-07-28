@@ -7,7 +7,7 @@
  */
 int shell_env(info_t *check)
 {
-	print_list_str(check->env);
+	shell_str(check->env);
 	return (0);
 }
 
@@ -24,7 +24,7 @@ char *shell_env_val(info_t *check, const char *envir)
 
 	while (list)
 	{
-		place = starts_with(list->str, name);
+		place = starts_with(list->str, envir);
 		if (place && *place)
 			return (place);
 		list = list->next;
@@ -80,7 +80,7 @@ int fill_env_list(info_t *check)
 	size_t n;
 
 	for (n = 0; environ[n]; n++)
-		add_node_end(&list, environ[n], 0);
+		append_list(&list, environ[n], 0);
 	check->env = list;
 	return (0);
 }
