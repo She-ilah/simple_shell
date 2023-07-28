@@ -124,9 +124,9 @@ int shell_putstwo(char c, int fd);
 int shell_putstwo2(char *str, int fd);
 
 char *starts_with(const char *, const char *);
-int _strcmp(char *, char *)
-char *_strcat(char *, char *)
-int _strlen(char *)
+int my_strcmp(char *, char *);
+char *my_strcat(char *, char *);
+int get_strlen(char *);
 
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
