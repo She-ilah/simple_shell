@@ -39,7 +39,7 @@ int is_chain(info_t *check, char *buffer, size_t *place)
  * @chec: parameter one.
  * @buffer: buffer(main display).
  * @pl: Current position.
- * ind: index
+ * @ind: index
  * @len: The length of the buffer.
  * Return: Void
  */

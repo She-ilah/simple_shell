@@ -94,7 +94,7 @@ ssize_t shell_input(info_t *check)
  * @buf_size: size of the buffer.
  * Return: Function returns contents of the buffer.
  */
-ssize_t read_buf(info_t *check, char *buffer, size_t *buf_size)
+ssize_t rd_buf(info_t *check, char *buffer, size_t *buf_size)
 {
 	ssize_t n = 0;
 
