@@ -123,10 +123,10 @@ int shell_putchar(char);
 int shell_putstwo(char c, int fd);
 int shell_putstwo2(char *str, int fd);
 
-int _strlen(char *);
-int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+int my_strcmp(char *, char *)
+char *my_strcat(char *, char *)
+int get_str_len(char *)
 
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
